@@ -13,7 +13,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    marginTop: 50,
   },
   userAvatar: {
     width: 50,
