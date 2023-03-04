@@ -27,10 +27,9 @@ const post = {
     },
     {
       id: '2',
-      comment: 'Welcome here',
+      comment: 'This a very good material',
       user: {
-        username:
-          'https://images.unsplash.com/photo-1582876533492-51fd2f162272?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80',
+        username: 'shakvilla',
       },
     },
   ],
@@ -39,7 +38,7 @@ const post = {
 const App = () => {
   return (
     <ScrollView style={styles.app}>
-      <NewsFeed data={post} />
+      <NewsFeed post={post} />
     </ScrollView>
   );
 };

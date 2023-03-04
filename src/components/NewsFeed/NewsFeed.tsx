@@ -7,8 +7,15 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import styles from './styles';
-const NewsFeed = ({props}) => {
-  console.log('props', props);
+import Comment from '../Comment';
+import {IPost} from '../../types/models';
+
+interface INewsFeed {
+  post: IPost;
+}
+const NewsFeed = (props: INewsFeed) => {
+  const {post} = props;
+  console.log('props', post);
   const [isLiked, setIsLiked] = useState('');
   return (
     <View style={styles.post}>
@@ -16,11 +23,11 @@ const NewsFeed = ({props}) => {
       <View style={styles.header}>
         <Image
           source={{
-            uri: 'https://images.unsplash.com/photo-1582876533492-51fd2f162272?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80',
+            uri: post.user.image,
           }}
           style={styles.userAvatar}
         />
-        <Text style={styles.userName}>monica</Text>
+        <Text style={styles.userName}>{post.user.username}</Text>
         <Entypo
           name="dots-three-horizontal"
           size={16}
@@ -30,7 +37,7 @@ const NewsFeed = ({props}) => {
       {/* Content */}
       <Image
         source={{
-          uri: 'https://images.unsplash.com/photo-1582876533492-51fd2f162272?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80',
+          uri: post.image,
         }}
         style={styles.image}
       />
@@ -67,30 +74,23 @@ const NewsFeed = ({props}) => {
 
         <Text style={styles.text}>
           Liked by <Text style={styles.boldText}>shakvilla</Text> and{' '}
-          <Text style={styles.boldText}>237 others</Text>
+          <Text style={styles.boldText}>{post.nofLikes} others</Text>
         </Text>
         {/* Post description */}
         <Text style={styles.text}>
-          <Text style={styles.boldText}>monica </Text> Developers and UI & UX
-          designers out there, say goodbye to tedious UI wireframing. Design
-          stunning mobile app interfaces on your iPad using the drag & drop
-          feature as well as the thousands of symbols available in the Mockup
-          app
+          <Text style={styles.boldText}>{post.user.username} </Text>
+          {post.description}
         </Text>
 
         {/* Comments */}
-        <Text>View all 17 comments</Text>
-        <View style={styles.comment}>
-          <Text style={styles.commentText}>
-            <Text style={styles.boldText}>lolapay </Text>
-            feature as well as the thousands of symbols available in the Mockup
-            app{' '}
-          </Text>
-          <AntDesign name={'hearto'} style={styles.icon} color={colors.black} />
-        </View>
-        {/* Posted date */}
+        <Text>View all {post.nofComments} comments</Text>
 
-        <Text style={styles.text}>04 March, 2023</Text>
+        {/* Posted date */}
+        {post.comments.map(comment => (
+          <Comment comment={comment} key={comment.id} />
+        ))}
+
+        <Text style={styles.text}>{post.createdAt}</Text>
       </View>
     </View>
   );
