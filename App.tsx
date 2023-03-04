@@ -63,10 +63,32 @@ const App = () => {
           />
         </View>
 
-        <Text>
+        <Text style={styles.text}>
           Liked by <Text style={styles.boldText}>shakvilla</Text> and{' '}
           <Text style={styles.boldText}>237 others</Text>
         </Text>
+        {/* Post description */}
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>monica </Text> Developers and UI & UX
+          designers out there, say goodbye to tedious UI wireframing. Design
+          stunning mobile app interfaces on your iPad using the drag & drop
+          feature as well as the thousands of symbols available in the Mockup
+          app
+        </Text>
+
+        {/* Comments */}
+        <Text>View all 17 comments</Text>
+        <View style={styles.comment}>
+          <Text style={styles.commentText}>
+            <Text style={styles.boldText}>lolapay </Text>
+            feature as well as the thousands of symbols available in the Mockup
+            app{' '}
+          </Text>
+          <AntDesign name={'hearto'} style={styles.icon} color={colors.black} />
+        </View>
+        {/* Posted date */}
+
+        <Text style={styles.text}>04 March, 2023</Text>
       </View>
     </View>
   );
@@ -101,6 +123,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 5,
   },
+  commentText: {
+    color: colors.black,
+    flex: 1,
+    lineHeight: 18,
+  },
 
   icon: {
     marginHorizontal: 5,
@@ -108,8 +135,17 @@ const styles = StyleSheet.create({
   footer: {
     padding: 10,
   },
+  text: {
+    fontSize: fonts.size.default,
+    color: colors.black,
+    lineHeight: 18,
+  },
   boldText: {
     fontWeight: fonts.weight.bold,
+  },
+  comment: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 
