@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Pressable} from 'react-native';
 import colors from '../../theme/colors';
 // import fonts from '../../theme/fonts';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -17,11 +17,23 @@ const NewsFeed = (props: INewsFeed) => {
   const {post} = props;
   // console.log('props', post);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isLiked, setIsLiked] = useState(true);
+  const [isLiked, setIsLiked] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   const toggleIsDescriptionExpanded = () => {
     setIsDescriptionExpanded(value => !value);
+  };
+  let lastTap = 0;
+  const handleDoublePress = () => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      toggleLike();
+    }
+    lastTap = now;
+  };
+
+  const toggleLike = () => {
+    setIsLiked(value => !value);
   };
   return (
     <View style={styles.post}>
@@ -33,6 +45,7 @@ const NewsFeed = (props: INewsFeed) => {
           }}
           style={styles.userAvatar}
         />
+
         <Text style={styles.userName}>{post.user.username}</Text>
         <Entypo
           name="dots-three-horizontal"
@@ -41,23 +54,28 @@ const NewsFeed = (props: INewsFeed) => {
         />
       </View>
       {/* Content */}
-      <Image
-        source={{
-          uri: post.image,
-        }}
-        style={styles.image}
-      />
+      <Pressable onPress={handleDoublePress}>
+        <Image
+          source={{
+            uri: post.image,
+          }}
+          style={styles.image}
+        />
+      </Pressable>
 
       {/* Footer View */}
       <View style={styles.footer}>
         {/* icon container */}
         <View style={styles.iconContainer}>
-          <AntDesign
-            name={isLiked ? 'heart' : 'hearto'}
-            size={24}
-            style={styles.icon}
-            color={isLiked ? colors.accent : colors.black}
-          />
+          <Pressable onPress={toggleLike}>
+            <AntDesign
+              name={isLiked ? 'heart' : 'hearto'}
+              size={24}
+              style={styles.icon}
+              color={isLiked ? colors.accent : colors.black}
+            />
+          </Pressable>
+
           <Ionicons
             name="chatbubble-outline"
             size={24}
