@@ -15,8 +15,14 @@ interface INewsFeed {
 }
 const NewsFeed = (props: INewsFeed) => {
   const {post} = props;
-  console.log('props', post);
-  const [isLiked, setIsLiked] = useState('');
+  // console.log('props', post);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isLiked, setIsLiked] = useState(true);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+
+  const toggleIsDescriptionExpanded = () => {
+    setIsDescriptionExpanded(value => !value);
+  };
   return (
     <View style={styles.post}>
       {/* Header  */}
@@ -50,7 +56,7 @@ const NewsFeed = (props: INewsFeed) => {
             name={isLiked ? 'heart' : 'hearto'}
             size={24}
             style={styles.icon}
-            color={colors.black}
+            color={isLiked ? colors.accent : colors.black}
           />
           <Ionicons
             name="chatbubble-outline"
@@ -77,9 +83,12 @@ const NewsFeed = (props: INewsFeed) => {
           <Text style={styles.boldText}>{post.nofLikes} others</Text>
         </Text>
         {/* Post description */}
-        <Text style={styles.text}>
+        <Text style={styles.text} numberOfLines={isDescriptionExpanded ? 0 : 3}>
           <Text style={styles.boldText}>{post.user.username} </Text>
           {post.description}
+        </Text>
+        <Text onPress={toggleIsDescriptionExpanded}>
+          {isDescriptionExpanded ? 'less' : 'more'}
         </Text>
 
         {/* Comments */}
