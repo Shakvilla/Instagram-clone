@@ -23,6 +23,14 @@ const NewsFeed = (props: INewsFeed) => {
   const toggleIsDescriptionExpanded = () => {
     setIsDescriptionExpanded(value => !value);
   };
+  let lastTap = 0;
+  const handleDoublePress = () => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      toggleLike();
+    }
+    lastTap = now;
+  };
 
   const toggleLike = () => {
     setIsLiked(value => !value);
@@ -37,6 +45,7 @@ const NewsFeed = (props: INewsFeed) => {
           }}
           style={styles.userAvatar}
         />
+
         <Text style={styles.userName}>{post.user.username}</Text>
         <Entypo
           name="dots-three-horizontal"
@@ -45,12 +54,14 @@ const NewsFeed = (props: INewsFeed) => {
         />
       </View>
       {/* Content */}
-      <Image
-        source={{
-          uri: post.image,
-        }}
-        style={styles.image}
-      />
+      <Pressable onPress={handleDoublePress}>
+        <Image
+          source={{
+            uri: post.image,
+          }}
+          style={styles.image}
+        />
+      </Pressable>
 
       {/* Footer View */}
       <View style={styles.footer}>
