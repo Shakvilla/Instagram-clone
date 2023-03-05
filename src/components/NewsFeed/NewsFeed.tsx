@@ -9,7 +9,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import styles from './styles';
 import Comment from '../Comment';
 import {IPost} from '../../types/models';
-
+import DoublePressable from '../DoublePressable';
+import Carousel from '../Carousel';
 interface INewsFeed {
   post: IPost;
 }
@@ -23,18 +24,24 @@ const NewsFeed = (props: INewsFeed) => {
   const toggleIsDescriptionExpanded = () => {
     setIsDescriptionExpanded(value => !value);
   };
-  let lastTap = 0;
-  const handleDoublePress = () => {
-    const now = Date.now();
-    if (now - lastTap < 300) {
-      toggleLike();
-    }
-    lastTap = now;
-  };
 
   const toggleLike = () => {
     setIsLiked(value => !value);
   };
+
+  let content = null;
+  if (post.image) {
+    content = (
+      <Image
+        source={{
+          uri: post.image,
+        }}
+        style={styles.image}
+      />
+    );
+  } else if (post.images) {
+    content = <Carousel images={post.images} />;
+  }
   return (
     <View style={styles.post}>
       {/* Header  */}
@@ -54,14 +61,7 @@ const NewsFeed = (props: INewsFeed) => {
         />
       </View>
       {/* Content */}
-      <Pressable onPress={handleDoublePress}>
-        <Image
-          source={{
-            uri: post.image,
-          }}
-          style={styles.image}
-        />
-      </Pressable>
+      <DoublePressable onDoublePress={toggleLike}>{content}</DoublePressable>
 
       {/* Footer View */}
       <View style={styles.footer}>
