@@ -16,7 +16,6 @@ interface INewsFeed {
 }
 const NewsFeed = (props: INewsFeed) => {
   const {post} = props;
-  // console.log('props', post);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLiked, setIsLiked] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
@@ -32,15 +31,17 @@ const NewsFeed = (props: INewsFeed) => {
   let content = null;
   if (post.image) {
     content = (
-      <Image
-        source={{
-          uri: post.image,
-        }}
-        style={styles.image}
-      />
+      <DoublePressable onDoublePress={toggleLike}>
+        <Image
+          source={{
+            uri: post.image,
+          }}
+          style={styles.image}
+        />
+      </DoublePressable>
     );
   } else if (post.images) {
-    content = <Carousel images={post.images} />;
+    content = <Carousel images={post.images} onDoublePress={toggleLike} />;
   }
   return (
     <View style={styles.post}>
@@ -61,7 +62,7 @@ const NewsFeed = (props: INewsFeed) => {
         />
       </View>
       {/* Content */}
-      <DoublePressable onDoublePress={toggleLike}>{content}</DoublePressable>
+      {content}
 
       {/* Footer View */}
       <View style={styles.footer}>

@@ -1,24 +1,42 @@
 /* eslint-disable react-native/no-inline-styles */
 import {View, Image, useWindowDimensions} from 'react-native';
-import React from 'react';
+import React, {useState, useRef} from 'react';
+import colors from '../../theme/colors';
 import {FlashList} from '@shopify/flash-list';
+import DoublePressable from '../DoublePressable';
 
 interface ICarousel {
   images: string[];
+  onDoublePress?: () => void;
 }
 
-const Carousel = ({images}: ICarousel) => {
+const Carousel = ({images, onDoublePress = () => {}}: ICarousel) => {
   const {width} = useWindowDimensions();
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  const viewabilityConfig = {
+    itemVisiblePercentThreshold: 51,
+  };
+
+  const onViewableItemsChanged = useRef(({viewableItems}) => {
+    if (viewableItems.length > 0) {
+      setActiveImageIndex(viewableItems[0].index);
+    }
+  });
   return (
     <>
       <FlashList
         data={images}
+        renderItem={({item}) => (
+          <DoublePressable onDoublePress={onDoublePress}>
+            <Image source={{uri: item}} style={{width, aspectRatio: 1}} />
+          </DoublePressable>
+        )}
         horizontal
         pagingEnabled
         estimatedItemSize={359}
-        renderItem={({item}) => (
-          <Image source={{uri: item}} style={{width, aspectRatio: 1}} />
-        )}
+        onViewableItemsChanged={onViewableItemsChanged.current}
+        viewabilityConfig={viewabilityConfig}
       />
       <View
         style={{
@@ -27,31 +45,22 @@ const Carousel = ({images}: ICarousel) => {
           position: 'absolute',
           bottom: 0,
           width: '100%',
+          paddingTop: 10,
+          paddingBottom: 10,
+          gap: 5,
         }}>
-        <View
-          style={{
-            width: 10,
-            aspectRatio: 1,
-            borderRadius: 5,
-            backgroundColor: 'red',
-          }}
-        />
-        <View
-          style={{
-            width: 10,
-            aspectRatio: 1,
-            borderRadius: 5,
-            backgroundColor: 'red',
-          }}
-        />
-        <View
-          style={{
-            width: 10,
-            aspectRatio: 1,
-            borderRadius: 5,
-            backgroundColor: 'red',
-          }}
-        />
+        {images.map((_, i) => (
+          <View
+            key={i}
+            style={{
+              width: 10,
+              aspectRatio: 1,
+              borderRadius: 5,
+              backgroundColor:
+                activeImageIndex === i ? colors.primary : colors.white,
+            }}
+          />
+        ))}
       </View>
     </>
   );
