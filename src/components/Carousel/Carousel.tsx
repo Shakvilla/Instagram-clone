@@ -1,5 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import {View, Image, useWindowDimensions, FlatList} from 'react-native';
+import {
+  View,
+  Image,
+  useWindowDimensions,
+  FlatList,
+  ViewabilityConfig,
+} from 'react-native';
 import React, {useState, useRef} from 'react';
 import colors from '../../theme/colors';
 // import {FlashList} from '@shopify/flash-list';
@@ -14,7 +20,7 @@ const Carousel = ({images, onDoublePress = () => {}}: ICarousel) => {
   const {width} = useWindowDimensions();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const viewabilityConfig = {
+  const viewabilityConfig: ViewabilityConfig = {
     itemVisiblePercentThreshold: 50,
   };
 
