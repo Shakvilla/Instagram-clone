@@ -11,11 +11,12 @@ import Comment from '../Comment';
 import {IPost} from '../../types/models';
 import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
+import VideoPlayer from '../VideoPlayer';
 interface INewsFeed {
   post: IPost;
+  isVisible: boolean;
 }
-const NewsFeed = (props: INewsFeed) => {
-  const {post} = props;
+const NewsFeed = ({post, isVisible}: INewsFeed) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLiked, setIsLiked] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
@@ -42,6 +43,12 @@ const NewsFeed = (props: INewsFeed) => {
     );
   } else if (post.images) {
     content = <Carousel images={post.images} onDoublePress={toggleLike} />;
+  } else if (post.video) {
+    content = (
+      <DoublePressable>
+        <VideoPlayer uri={post.video} paused={!isVisible} />
+      </DoublePressable>
+    );
   }
   return (
     <View style={styles.post}>
