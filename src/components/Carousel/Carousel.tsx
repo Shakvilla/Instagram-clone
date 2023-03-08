@@ -1,9 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
-import {View, Image, useWindowDimensions, FlatList} from 'react-native';
+import {
+  View,
+  Image,
+  useWindowDimensions,
+  FlatList,
+  ViewabilityConfig,
+  ViewToken,
+} from 'react-native';
 import React, {useState, useRef} from 'react';
 import colors from '../../theme/colors';
 // import {FlashList} from '@shopify/flash-list';
 import DoublePressable from '../DoublePressable';
+// import {ViewToken} from '@shopify/flash-list';
 
 interface ICarousel {
   images: string[];
@@ -14,15 +22,17 @@ const Carousel = ({images, onDoublePress = () => {}}: ICarousel) => {
   const {width} = useWindowDimensions();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const viewabilityConfig = {
+  const viewabilityConfig: ViewabilityConfig = {
     itemVisiblePercentThreshold: 50,
   };
 
-  const onViewableItemsChanged = useRef(({viewableItems}) => {
-    if (viewableItems.length > 0) {
-      setActiveImageIndex(viewableItems[0].index);
-    }
-  });
+  const onViewableItemsChanged = useRef(
+    ({viewableItems}: {viewableItems: Array<ViewToken>}) => {
+      if (viewableItems.length > 0) {
+        setActiveImageIndex(viewableItems[0].index || 0);
+      }
+    },
+  );
   return (
     <>
       <FlatList
@@ -42,7 +52,7 @@ const Carousel = ({images, onDoublePress = () => {}}: ICarousel) => {
         style={{
           flexDirection: 'row',
           justifyContent: 'center',
-          position: 'absolute',
+          // position: 'absolute',
           bottom: 0,
           width: '100%',
           paddingTop: 10,
