@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import {View, Image, useWindowDimensions} from 'react-native';
+import {View, Image, useWindowDimensions, FlatList} from 'react-native';
 import React, {useState, useRef} from 'react';
 import colors from '../../theme/colors';
-import {FlashList} from '@shopify/flash-list';
+// import {FlashList} from '@shopify/flash-list';
 import DoublePressable from '../DoublePressable';
 
 interface ICarousel {
@@ -15,7 +15,7 @@ const Carousel = ({images, onDoublePress = () => {}}: ICarousel) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const viewabilityConfig = {
-    itemVisiblePercentThreshold: 51,
+    itemVisiblePercentThreshold: 50,
   };
 
   const onViewableItemsChanged = useRef(({viewableItems}) => {
@@ -25,7 +25,7 @@ const Carousel = ({images, onDoublePress = () => {}}: ICarousel) => {
   });
   return (
     <>
-      <FlashList
+      <FlatList
         data={images}
         renderItem={({item}) => (
           <DoublePressable onDoublePress={onDoublePress}>
@@ -34,7 +34,7 @@ const Carousel = ({images, onDoublePress = () => {}}: ICarousel) => {
         )}
         horizontal
         pagingEnabled
-        estimatedItemSize={359}
+        // estimatedItemSize={359}
         onViewableItemsChanged={onViewableItemsChanged.current}
         viewabilityConfig={viewabilityConfig}
       />
@@ -49,15 +49,15 @@ const Carousel = ({images, onDoublePress = () => {}}: ICarousel) => {
           paddingBottom: 10,
           gap: 5,
         }}>
-        {images.map((_, i) => (
+        {images.map((_, index) => (
           <View
-            key={i}
+            key={index}
             style={{
               width: 10,
               aspectRatio: 1,
               borderRadius: 5,
               backgroundColor:
-                activeImageIndex === i ? colors.primary : colors.white,
+                activeImageIndex === index ? colors.accent : colors.primary,
             }}
           />
         ))}
