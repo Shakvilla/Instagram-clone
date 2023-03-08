@@ -13,7 +13,8 @@
     "@shopify/flash-list": "^1.4.1",
     "react": "18.2.0",
     "react-native": "0.71.3",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-vector-icons": "^9.2.0",
+    "react-native-video": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -24,6 +25,7 @@
     "@types/jest": "^29.2.1",
     "@types/react": "^18.0.24",
     "@types/react-native-vector-icons": "^6.4.13",
+    "@types/react-native-video": "^5.0.14",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.2.1",
     "eslint": "^8.19.0",
