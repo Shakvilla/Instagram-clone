@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../theme/colors';
@@ -10,15 +10,18 @@ interface ICommentProps {
 }
 const Comment = ({comment}: ICommentProps) => {
   return (
-    <>
-      <View style={styles.comment}>
-        <Text style={styles.commentText}>
-          <Text style={styles.boldText}>{comment.user.username} </Text>
-          {comment.comment}{' '}
-        </Text>
-        <AntDesign name={'hearto'} style={styles.icon} color={colors.black} />
-      </View>
-    </>
+    <View style={styles.comment}>
+      <Text style={styles.commentText}>
+        <Image
+          source={{uri: comment.user.image}}
+          style={styles.avatar}
+          alt="user avatar"
+        />
+        <Text style={styles.boldText}>{comment.user.username} </Text>
+        {comment.comment}{' '}
+      </Text>
+      <AntDesign name={'hearto'} style={styles.icon} color={colors.black} />
+    </View>
   );
 };
 
@@ -39,10 +42,17 @@ const styles = StyleSheet.create({
     color: colors.black,
     flex: 1,
     lineHeight: 18,
+    marginHorizontal: 5,
   },
 
   icon: {
     marginHorizontal: 5,
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    aspectRatio: 1,
+    borderRadius: 25,
   },
 });
 export default Comment;
