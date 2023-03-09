@@ -34,7 +34,7 @@ const Comment = ({comment}: ICommentProps) => {
         </View>
       </View>
 
-      <Pressable onPress={toggleLike} hitSlop={4}>
+      <Pressable onPress={toggleLike} hitSlop={5}>
         <AntDesign
           name={isLiked ? 'heart' : 'hearto'}
           style={styles.icon}
