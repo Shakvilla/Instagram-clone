@@ -7,8 +7,9 @@ import {IComment} from '../../types/models';
 
 interface ICommentProps {
   comment: IComment;
+  includeDetails: boolean;
 }
-const Comment = ({comment}: ICommentProps) => {
+const Comment = ({comment, includeDetails = false}: ICommentProps) => {
   const [isLiked, setIsLiked] = useState(false);
 
   const toggleLike = () => {
@@ -17,21 +18,26 @@ const Comment = ({comment}: ICommentProps) => {
 
   return (
     <View style={styles.comment}>
-      <Image
-        source={{uri: comment.user.image}}
-        style={styles.avatar}
-        alt="user avatar"
-      />
+      {includeDetails && (
+        <Image
+          source={{uri: comment.user.image}}
+          style={styles.avatar}
+          alt="user avatar"
+        />
+      )}
+
       <View style={styles.middleColumn}>
         <Text style={styles.commentText}>
           <Text style={styles.boldText}>{comment.user.username} </Text>
           {comment.comment}{' '}
         </Text>
-        <View style={styles.footer}>
-          <Text style={styles.footerText}>2d</Text>
-          <Text style={styles.footerText}>34 likes</Text>
-          <Text style={styles.footerText}>Reply</Text>
-        </View>
+        {includeDetails && (
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>2d</Text>
+            <Text style={styles.footerText}>34 likes</Text>
+            <Text style={styles.footerText}>Reply</Text>
+          </View>
+        )}
       </View>
 
       <Pressable onPress={toggleLike} hitSlop={5}>
@@ -56,12 +62,11 @@ const styles = StyleSheet.create({
   },
   comment: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   commentText: {
     color: colors.black,
     lineHeight: 18,
-    marginHorizontal: 5,
   },
 
   icon: {
@@ -71,13 +76,14 @@ const styles = StyleSheet.create({
     width: 40,
     aspectRatio: 1,
     borderRadius: 25,
+    marginRight: 5,
   },
   footer: {
     flexDirection: 'row',
     marginBottom: 10,
   },
   footerText: {
-    marginHorizontal: 5,
+    marginRight: 10,
   },
   middleColumn: {
     flex: 1,

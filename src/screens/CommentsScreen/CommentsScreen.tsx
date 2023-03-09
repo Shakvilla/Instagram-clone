@@ -8,7 +8,9 @@ const CommentsScreen = () => {
     <View>
       <FlatList
         data={comments}
-        renderItem={({item}) => <Comment comment={item} />}
+        renderItem={({item}) => (
+          <Comment comment={item} includeDetails={true} />
+        )}
         // estimatedItemSize={250}
         style={styles.comment}
       />
