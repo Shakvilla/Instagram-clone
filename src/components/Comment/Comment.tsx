@@ -1,5 +1,5 @@
-import {View, Text, StyleSheet, Image} from 'react-native';
-import React from 'react';
+import {View, Text, StyleSheet, Image, Pressable} from 'react-native';
+import React, {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import colors from '../../theme/colors';
 import fonts from '../../theme/fonts';
@@ -9,6 +9,12 @@ interface ICommentProps {
   comment: IComment;
 }
 const Comment = ({comment}: ICommentProps) => {
+  const [isLiked, setIsLiked] = useState(false);
+
+  const toggleLike = () => {
+    setIsLiked(value => !value);
+  };
+
   return (
     <View style={styles.comment}>
       <Image
@@ -16,11 +22,25 @@ const Comment = ({comment}: ICommentProps) => {
         style={styles.avatar}
         alt="user avatar"
       />
-      <Text style={styles.commentText}>
-        <Text style={styles.boldText}>{comment.user.username} </Text>
-        {comment.comment}{' '}
-      </Text>
-      <AntDesign name={'hearto'} style={styles.icon} color={colors.black} />
+      <View style={styles.middleColumn}>
+        <Text style={styles.commentText}>
+          <Text style={styles.boldText}>{comment.user.username} </Text>
+          {comment.comment}{' '}
+        </Text>
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>2d</Text>
+          <Text style={styles.footerText}>34 likes</Text>
+          <Text style={styles.footerText}>Reply</Text>
+        </View>
+      </View>
+
+      <Pressable onPress={toggleLike} hitSlop={4}>
+        <AntDesign
+          name={isLiked ? 'heart' : 'hearto'}
+          style={styles.icon}
+          color={isLiked ? colors.accent : colors.black}
+        />
+      </Pressable>
     </View>
   );
 };
@@ -40,7 +60,6 @@ const styles = StyleSheet.create({
   },
   commentText: {
     color: colors.black,
-    flex: 1,
     lineHeight: 18,
     marginHorizontal: 5,
   },
@@ -49,9 +68,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   avatar: {
-    width: 50,
+    width: 40,
     aspectRatio: 1,
     borderRadius: 25,
+  },
+  footer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  footerText: {
+    marginHorizontal: 5,
+  },
+  middleColumn: {
+    flex: 1,
   },
 });
 export default Comment;
