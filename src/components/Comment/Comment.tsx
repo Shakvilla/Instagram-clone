@@ -11,12 +11,12 @@ interface ICommentProps {
 const Comment = ({comment}: ICommentProps) => {
   return (
     <View style={styles.comment}>
+      <Image
+        source={{uri: comment.user.image}}
+        style={styles.avatar}
+        alt="user avatar"
+      />
       <Text style={styles.commentText}>
-        <Image
-          source={{uri: comment.user.image}}
-          style={styles.avatar}
-          alt="user avatar"
-        />
         <Text style={styles.boldText}>{comment.user.username} </Text>
         {comment.comment}{' '}
       </Text>
@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
   },
   avatar: {
     width: 50,
-    height: 50,
     aspectRatio: 1,
     borderRadius: 25,
   },
