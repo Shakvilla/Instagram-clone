@@ -1,0 +1,47 @@
+[
+  {
+    "id": "c1",
+    "comment": "Awesome post, thank you for sharing this with us all. I wish to learn how to code. My goal is to create web, mobile and desktop applications that will solve societal issues",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c2",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c3",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c4",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c5",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  }
+]
