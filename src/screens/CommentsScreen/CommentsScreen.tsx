@@ -3,9 +3,10 @@ import React from 'react';
 // import {FlashList} from '@shopify/flash-list';
 import comments from '../../assets/data/comments.json';
 import Comment from '../../components/Comment';
+import Input from './Input';
 const CommentsScreen = () => {
   return (
-    <View>
+    <View style={styles.commentPage}>
       <FlatList
         data={comments}
         renderItem={({item}) => (
@@ -14,6 +15,7 @@ const CommentsScreen = () => {
         // estimatedItemSize={250}
         style={styles.comment}
       />
+      <Input />
     </View>
   );
 };
@@ -21,6 +23,9 @@ const CommentsScreen = () => {
 const styles = StyleSheet.create({
   comment: {
     padding: 10,
+  },
+  commentPage: {
+    flex: 1,
   },
 });
 

@@ -43,5 +43,77 @@
       "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
       "username": "shakvilla"
     }
+  },
+  {
+    "id": "c6",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c7",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c8",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c9",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c10",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c11",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c12",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
+  },
+  {
+    "id": "c13",
+    "comment": "Awesome post, thank you for sharing this with us all.",
+    "user": {
+      "id": "u1",
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
+      "username": "shakvilla"
+    }
   }
 ]
