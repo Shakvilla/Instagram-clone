@@ -1,5 +1,5 @@
 import {View, Image, Text} from 'react-native';
-import React, {memo} from 'react';
+import React from 'react';
 import styles from './styles';
 import user from '../../assets/data/user.json';
 import Button from '../../components/Button';
