@@ -67,7 +67,7 @@ const Carousel = ({images, onDoublePress = () => {}}: ICarousel) => {
               aspectRatio: 1,
               borderRadius: 5,
               backgroundColor:
-                activeImageIndex === index ? colors.accent : colors.primary,
+                activeImageIndex === index ? colors.primary : colors.lightgrey,
             }}
           />
         ))}

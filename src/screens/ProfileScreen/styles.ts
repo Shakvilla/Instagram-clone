@@ -5,6 +5,7 @@ import fonts from '../../theme/fonts';
 export default StyleSheet.create({
   root: {
     padding: 10,
+    flex: 1,
   },
 
   headerRow: {
@@ -35,7 +36,17 @@ export default StyleSheet.create({
   },
   buttonsRoot: {
     flexDirection: 'row',
-    gap: 2,
+    gap: 5,
     marginVertical: 4,
+  },
+  gallery: {
+    flex: 1,
+    // aspectRatio: 1,
+  },
+  galleryImage: {
+    flex: 1,
+    margin: 1,
+    aspectRatio: 1,
+    // maxWidth: '50%',
   },
 });

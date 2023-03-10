@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, memo} from 'react';
 import {ViewabilityConfig, FlatList, ViewToken} from 'react-native';
 import NewsFeed from '../../components/NewsFeed';
 import posts from '../../assets/data/post.json';
@@ -24,7 +24,7 @@ const HomeScreen = () => {
       renderItem={({item}) => (
         <NewsFeed post={item} isVisible={activePostId === item.id} />
       )}
-      // estimatedItemSize={20}
+      // estimatedItemSize={732}
       keyExtractor={item => {
         return item.id;
       }}
@@ -35,4 +35,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default memo(HomeScreen);

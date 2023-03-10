@@ -1,9 +1,10 @@
-import {View, Image, Text} from 'react-native';
-import React from 'react';
+import {View, Image, Text, FlatList, StyleSheet} from 'react-native';
+import React, {memo} from 'react';
 import styles from './styles';
 import user from '../../assets/data/user.json';
 import Button from '../../components/Button';
-const ProfileScreen = () => {
+import {FlashList} from '@shopify/flash-list';
+const ProfileHeader = () => {
   return (
     <View style={styles.root}>
       <View style={styles.headerRow}>
@@ -39,4 +40,28 @@ const ProfileScreen = () => {
   );
 };
 
-export default ProfileScreen;
+const ProfileScreen = () => {
+  return (
+    <View style={styles.gallery}>
+      <FlashList
+        data={user.posts}
+        renderItem={({item}) => (
+          //   <NewsFeed post={item} isVisible={activePostId === item.id} />
+          <Image
+            source={{uri: item.image || item.images[0]}}
+            style={styles.galleryImage}
+          />
+        )}
+        estimatedItemSize={100}
+        keyExtractor={item => {
+          return item.id;
+        }}
+        showsVerticalScrollIndicator={false}
+        numColumns={3}
+        ListHeaderComponent={ProfileHeader}
+      />
+    </View>
+  );
+};
+
+export default memo(ProfileScreen);
