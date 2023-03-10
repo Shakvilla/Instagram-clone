@@ -4,6 +4,7 @@ import styles from '../../screens/ProfileScreen/styles';
 
 import {FlashList} from '@shopify/flash-list';
 import {IPost} from '../../types/models';
+import FeedGridItem from './FeedGridItem';
 
 interface INewFeedGrid {
   data: IPost[];
@@ -21,10 +22,8 @@ const FeedGridView = ({data, ListHeaderComponent}: INewFeedGrid) => {
         data={data}
         renderItem={({item}) => (
           //   <NewsFeed post={item} isVisible={activePostId === item.id} />
-          <Image
-            source={{uri: item.image || item.images[0]}}
-            style={styles.galleryImage}
-          />
+
+          <FeedGridItem post={item} />
         )}
         estimatedItemSize={135}
         keyExtractor={item => {

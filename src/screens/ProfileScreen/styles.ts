@@ -45,7 +45,7 @@ export default StyleSheet.create({
   },
   galleryImage: {
     flex: 1,
-    margin: 1,
+    padding: 1,
     aspectRatio: 1,
     // maxWidth: '50%',
   },
