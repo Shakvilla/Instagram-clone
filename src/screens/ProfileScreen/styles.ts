@@ -33,4 +33,9 @@ export default StyleSheet.create({
     fontWeight: fonts.weight.bold,
     color: colors.black,
   },
+  buttonsRoot: {
+    flexDirection: 'row',
+    gap: 2,
+    marginVertical: 4,
+  },
 });

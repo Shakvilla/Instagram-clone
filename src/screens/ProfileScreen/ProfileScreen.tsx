@@ -2,6 +2,7 @@ import {View, Image, Text} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import user from '../../assets/data/user.json';
+import Button from '../../components/Button';
 const ProfileScreen = () => {
   return (
     <View style={styles.root}>
@@ -24,6 +25,16 @@ const ProfileScreen = () => {
       </View>
       <Text style={styles.name}>{user.name}</Text>
       <Text>{user.bio}</Text>
+      <View style={styles.buttonsRoot}>
+        <Button
+          text="Edit Profile"
+          onPress={() => console.warn('Editing Profile')}
+        />
+        <Button
+          text="Another Button"
+          onPress={() => console.warn('Editing Profile')}
+        />
+      </View>
     </View>
   );
 };
