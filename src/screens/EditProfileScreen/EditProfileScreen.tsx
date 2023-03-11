@@ -6,6 +6,9 @@ import fonts from '../../theme/fonts';
 import {useForm, Controller, Control} from 'react-hook-form';
 import {IUser} from '../../types/models';
 
+const URL_REGEX =
+  /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/i;
+
 type IEditableUserField = 'name' | 'username' | 'website' | 'bio';
 
 type IEditableUser = Pick<IUser, IEditableUserField>;
@@ -59,12 +62,19 @@ const EditProfileScreen = () => {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm<IEditableUser>();
+  } = useForm<IEditableUser>({
+    defaultValues: {
+      name: user.name,
+      username: user.username,
+      website: user.website,
+      bio: user.bio,
+    },
+  });
   const onSubmit = (data: IEditableUser) => {
     console.log(data);
   };
 
-  console.log(errors);
+  // console.log(errors);
   return (
     <View style={styles.page}>
       <Image source={{uri: user.image}} style={styles.avatar} />
@@ -89,7 +99,13 @@ const EditProfileScreen = () => {
         label="Username"
       />
       <CustomInput
-        rules={{required: 'Website url is required '}}
+        rules={{
+          // required: 'Website url is required ',
+          pattern: {
+            value: URL_REGEX,
+            massage: 'Invalid url',
+          },
+        }}
         name="website"
         control={control}
         label="Website"
