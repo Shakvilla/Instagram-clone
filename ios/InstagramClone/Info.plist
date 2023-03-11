@@ -38,6 +38,10 @@
 
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow InstagramClone to access your photo gallery</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow $(PRODUCT_NAME) to use the camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow $(PRODUCT_NAME) to use the microphone</string>
 
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
