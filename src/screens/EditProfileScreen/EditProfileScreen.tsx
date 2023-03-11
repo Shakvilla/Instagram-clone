@@ -1,9 +1,11 @@
 import {View, Text, Image, StyleSheet, TextInput} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import {launchImageLibrary, Asset} from 'react-native-image-picker';
+import {useForm, Controller, Control} from 'react-hook-form';
+
 import user from '../../assets/data/user.json';
 import colors from '../../theme/colors';
 import fonts from '../../theme/fonts';
-import {useForm, Controller, Control} from 'react-hook-form';
 import {IUser} from '../../types/models';
 
 const URL_REGEX =
@@ -58,6 +60,7 @@ const CustomInput = ({
   />
 );
 const EditProfileScreen = () => {
+  const [selectedPhoto, setSelectedPhoto] = useState<null | Asset>(null);
   const {
     control,
     handleSubmit,
@@ -74,11 +77,27 @@ const EditProfileScreen = () => {
     console.log(data);
   };
 
+  const onChangePhoto = () => {
+    launchImageLibrary(
+      {mediaType: 'photo'},
+      ({didCancel, errorCode, errorMessage, assets}) => {
+        if (!didCancel && !errorCode && assets && assets.length > 0) {
+          setSelectedPhoto(assets[0]);
+        }
+      },
+    );
+  };
+
   // console.log(errors);
   return (
     <View style={styles.page}>
-      <Image source={{uri: user.image}} style={styles.avatar} />
-      <Text style={styles.textButton}>Change profile photo</Text>
+      <Image
+        source={{uri: selectedPhoto?.uri || user.image}}
+        style={styles.avatar}
+      />
+      <Text onPress={onChangePhoto} style={styles.textButton}>
+        Change profile photo
+      </Text>
 
       <CustomInput
         rules={{required: 'Name is required'}}
