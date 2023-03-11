@@ -77,7 +77,13 @@ const EditProfileScreen = () => {
         label="Name"
       />
       <CustomInput
-        rules={{required: 'Username is required'}}
+        rules={{
+          required: 'Username is required',
+          minLength: {
+            value: 3,
+            message: 'Username should be more than 3 characters',
+          },
+        }}
         name="username"
         control={control}
         label="Username"
@@ -88,7 +94,18 @@ const EditProfileScreen = () => {
         control={control}
         label="Website"
       />
-      <CustomInput name="bio" control={control} label="Bio" multiline={true} />
+      <CustomInput
+        name="bio"
+        control={control}
+        label="Bio"
+        multiline={true}
+        rules={{
+          maxLength: {
+            value: 200,
+            message: 'Bio should be less than 200 characters',
+          },
+        }}
+      />
 
       <Text onPress={handleSubmit(onSubmit)} style={styles.textButton}>
         Submit
