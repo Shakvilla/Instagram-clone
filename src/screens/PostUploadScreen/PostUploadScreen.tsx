@@ -10,7 +10,8 @@ const PostUploadScreen = () => {
   useEffect(() => {
     const getPermission = async () => {
       const cameraPermission = await Camera.requestCameraPermissionsAsync();
-      const microphonePermission = Camera.requestMicrophonePermissionsAsync();
+      const microphonePermission =
+        await Camera.requestMicrophonePermissionsAsync();
 
       setHasCameraAccessPermission(
         cameraPermission.status === 'granted' &&
