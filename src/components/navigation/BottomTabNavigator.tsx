@@ -6,6 +6,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import colors from '../../theme/colors';
+import HomeStackNavigator from './HomeStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,9 +18,10 @@ const BottomTabNavigator = () => {
         tabBarActiveTintColor: colors.black,
       }}>
       <Tab.Screen
-        name="Feed"
-        component={HomeScreen}
+        name="HomeStack "
+        component={HomeStackNavigator}
         options={{
+          headerShown: false,
           tabBarIcon: ({color, size}) => (
             <MaterialIcons size={size} color={color} name="home-filled" />
           ),
@@ -38,11 +40,25 @@ const BottomTabNavigator = () => {
         name="Upload"
         component={PostUploadScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({color, size}) => (
             <MaterialCommunityIcons
               size={size}
               color={color}
               name="plus-circle-outline"
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Notifications"
+        component={PostUploadScreen}
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons
+              size={size}
+              color={color}
+              name="heart-outline"
             />
           ),
         }}
