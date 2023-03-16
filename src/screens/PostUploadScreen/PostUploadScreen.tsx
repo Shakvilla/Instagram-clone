@@ -1,6 +1,12 @@
 import {View, Text, StyleSheet, Pressable} from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
-import {Camera, CameraType, FlashMode} from 'expo-camera';
+import {
+  Camera,
+  CameraPictureOptions,
+  CameraRecordingOptions,
+  CameraType,
+  FlashMode,
+} from 'expo-camera';
 import colors from '../../theme/colors';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -23,7 +29,8 @@ const PostUploadScreen = () => {
   >(null);
   const [type, setType] = useState(CameraType.back);
   const [flash, setFlash] = useState(FlashMode.off);
-  const [isCameraReady, setIsCameraReady] = useState(false);
+  const [isCameraReady, setIsCameraReady] = useState(true);
+  const [isRecording, setIsRecording] = useState(false);
 
   const camera = useRef<Camera>(null);
   useEffect(() => {
@@ -42,18 +49,19 @@ const PostUploadScreen = () => {
 
   // Take Camera
   const takePicture = async () => {
-    const result = await camera.current?.takePictureAsync;
+    // check if camera is ready for usage
+    if (!isCameraReady || !camera.current || isRecording) {
+      return;
+    }
+
+    const options: CameraPictureOptions = {
+      quality: 1,
+      base64: true,
+      skipProcessing: true,
+    };
+    const result = await camera.current.takePictureAsync(options);
     console.log(result);
   };
-
-  // Check for camera access permission
-  if (hasCameraAccessPermission === null) {
-    return <Text>Loading</Text>;
-  }
-
-  if (hasCameraAccessPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
 
   // change camera mode to front or back
   const toggleCameraType = () => {
@@ -69,6 +77,40 @@ const PostUploadScreen = () => {
     setFlash(flashModes[nextIndex]);
   };
   // console.warn(flash);
+
+  const startRecording = async () => {
+    if (!isCameraReady || !camera.current || isRecording) {
+      return;
+    }
+    const options: CameraRecordingOptions = {
+      quality: Camera.Constants.VideoQuality['640:480'],
+      maxDuration: 60,
+      maxFileSize: 10 * 1024 * 1024,
+      mute: false,
+    };
+    setIsRecording(true);
+    try {
+      const result = await camera.current?.recordAsync(options);
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const stopRecording = async () => {
+    if (isRecording) {
+      camera.current?.stopRecording();
+      setIsRecording(false);
+    }
+  };
+
+  // Check for camera access permission
+  if (hasCameraAccessPermission === null) {
+    return <Text>Loading</Text>;
+  }
+
+  if (hasCameraAccessPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
   return (
     <View style={styles.page}>
       <Camera
@@ -94,10 +136,18 @@ const PostUploadScreen = () => {
         <MaterialIcons name="photo-library" size={30} color={colors.white} />
         {isCameraReady && (
           <Pressable onPress={takePicture}>
-            <View style={styles.circle} />
+            <View
+              style={[
+                styles.circle,
+                {backgroundColor: isRecording ? colors.accent : colors.white},
+              ]}
+            />
           </Pressable>
         )}
-        <Pressable onPress={toggleCameraType}>
+        <Pressable
+          onPress={toggleCameraType}
+          onLongPress={startRecording}
+          onPressOut={stopRecording}>
           <MaterialIcons
             name="flip-camera-ios"
             size={30}
