@@ -12,6 +12,7 @@ import {IPost} from '../../types/models';
 import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
 import VideoPlayer from '../VideoPlayer';
+import {useNavigation} from '@react-navigation/native';
 interface INewsFeed {
   post: IPost;
   isVisible: boolean;
@@ -21,12 +22,18 @@ const NewsFeed = ({post, isVisible}: INewsFeed) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
+  const navigation = useNavigation();
+
   const toggleIsDescriptionExpanded = () => {
     setIsDescriptionExpanded(value => !value);
   };
 
   const toggleLike = () => {
     setIsLiked(value => !value);
+  };
+
+  const navigateToUser = () => {
+    navigation.navigate('UserProfile');
   };
 
   let content = null;
@@ -61,7 +68,9 @@ const NewsFeed = ({post, isVisible}: INewsFeed) => {
           style={styles.userAvatar}
         />
 
-        <Text style={styles.userName}>{post.user.username}</Text>
+        <Text style={styles.userName} onPress={navigateToUser}>
+          {post.user.username}
+        </Text>
         <Entypo
           name="dots-three-horizontal"
           size={16}

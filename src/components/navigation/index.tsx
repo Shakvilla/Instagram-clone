@@ -12,16 +12,18 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="UserProfile"
-        screenOptions={{header: HeaderTitle, headerTitleAlign: 'center'}}>
-        <Stack.Group>
-          <Stack.Screen name="Feed" component={HomeScreen} />
-          <Stack.Screen
-            name="UserProfile"
-            component={ProfileScreen}
-            options={{title: 'Profile'}}
-          />
-        </Stack.Group>
+        initialRouteName="Feed"
+        screenOptions={{headerShown: true}}>
+        <Stack.Screen
+          name="Feed"
+          component={HomeScreen}
+          options={{header: HeaderTitle, headerTitleAlign: 'center'}}
+        />
+        <Stack.Screen
+          name="UserProfile"
+          component={ProfileScreen}
+          options={{title: 'Profile'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
