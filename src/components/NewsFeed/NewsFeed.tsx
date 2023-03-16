@@ -33,7 +33,7 @@ const NewsFeed = ({post, isVisible}: INewsFeed) => {
   };
 
   const navigateToUser = () => {
-    navigation.navigate('UserProfile');
+    navigation.navigate('UserProfile', {userId: post.user.id});
   };
 
   let content = null;

@@ -7,7 +7,7 @@
     "user": {
       "id": "u1",
       "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/1.jpg",
-      "username": "vadimnotjustdev"
+      "username": "shakvillagh"
     },
     "nofComments": 11,
     "nofLikes": 34,
@@ -61,7 +61,7 @@
         "comment": "Lorem ipsum dolor sit amet consectetur adipisicing elit. H",
         "user": {
           "id": "u1",
-          "username": "vadimnotjustdev"
+          "username": "shakvilla"
         }
       }
     ]
@@ -72,9 +72,9 @@
     "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic repellendus unde blanditiis. Eos fugiat dolorem ea fugit aut sapiente corrupti autem dolores deleniti architecto, omnis, amet unde dignissimos quam minima?",
     "user": {
-      "id": "u1",
+      "id": "u2",
       "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/2.jpg",
-      "username": "vadimnotjustdev"
+      "username": "shakvilla"
     },
     "nofComments": 11,
     "nofLikes": 34,
