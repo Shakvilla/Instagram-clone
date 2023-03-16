@@ -14,12 +14,12 @@ const Navigation = () => {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{headerShown: true}}>
-        <Stack.Screen name="Home" component={BottomTabNavigator} />
-        {/* <Stack.Screen
-          name="Feed"
-          component={HomeScreen}
-          options={{header: HeaderTitle, headerTitleAlign: 'center'}}
-        /> */}
+        <Stack.Screen
+          name="Home"
+          component={BottomTabNavigator}
+          options={{headerShown: false}}
+        />
+
         <Stack.Screen
           name="UserProfile"
           component={ProfileScreen}
