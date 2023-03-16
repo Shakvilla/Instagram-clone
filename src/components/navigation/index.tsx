@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import ProfileScreen from '../../screens/ProfileScreen';
 import {Image} from 'react-native';
 import logo from '../../assets/images/instagram.png';
+import BottomTabNavigator from './BottomTabNavigator';
 
 const Stack = createNativeStackNavigator();
 const Navigation = () => {
@@ -14,6 +15,7 @@ const Navigation = () => {
       <Stack.Navigator
         initialRouteName="Feed"
         screenOptions={{headerShown: true}}>
+        <Stack.Screen name="Home" component={BottomTabNavigator} />
         <Stack.Screen
           name="Feed"
           component={HomeScreen}
