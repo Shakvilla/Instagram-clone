@@ -6,7 +6,6 @@ import posts from '../../assets/data/post.json';
 
 const HomeScreen = props => {
   const [activePostId, setActivePostId] = useState<string | null>(null);
-  console.log(props);
 
   const viewabilityConfig: ViewabilityConfig = {
     itemVisiblePercentThreshold: 51,
