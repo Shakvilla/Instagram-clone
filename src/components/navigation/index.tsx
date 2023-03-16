@@ -30,14 +30,4 @@ const Navigation = () => {
   );
 };
 
-const HeaderTitle = () => {
-  return (
-    <Image
-      source={logo}
-      resizeMode="contain"
-      style={{width: 150, height: 40}}
-    />
-  );
-};
-
 export default Navigation;
