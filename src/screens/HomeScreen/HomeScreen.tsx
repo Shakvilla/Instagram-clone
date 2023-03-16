@@ -4,8 +4,9 @@ import NewsFeed from '../../components/NewsFeed';
 import posts from '../../assets/data/post.json';
 // import {FlashList} from '@shopify/flash-list';
 
-const HomeScreen = () => {
+const HomeScreen = props => {
   const [activePostId, setActivePostId] = useState<string | null>(null);
+  console.log(props);
 
   const viewabilityConfig: ViewabilityConfig = {
     itemVisiblePercentThreshold: 51,
