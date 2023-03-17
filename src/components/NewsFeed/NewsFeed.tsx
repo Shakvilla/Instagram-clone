@@ -24,16 +24,24 @@ const NewsFeed = ({post, isVisible}: INewsFeed) => {
 
   const navigation = useNavigation();
 
+  // click to expand description
   const toggleIsDescriptionExpanded = () => {
     setIsDescriptionExpanded(value => !value);
   };
 
+  // click to change like button to liked
   const toggleLike = () => {
     setIsLiked(value => !value);
   };
 
+  //navigate to user profile
   const navigateToUser = () => {
     navigation.navigate('UserProfile', {userId: post.user.id});
+  };
+
+  // navigate to comments page
+  const navigateToComments = () => {
+    navigation.navigate('Comments', {postId: post.id});
   };
 
   let content = null;
@@ -127,7 +135,9 @@ const NewsFeed = ({post, isVisible}: INewsFeed) => {
         </Text>
 
         {/* Comments */}
-        <Text>View all {post.nofComments} comments</Text>
+        <Text onPress={navigateToComments}>
+          View all {post.nofComments} comments
+        </Text>
 
         {/* Posted date */}
         {post.comments.map(comment => (

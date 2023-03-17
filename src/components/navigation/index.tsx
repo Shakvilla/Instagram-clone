@@ -6,6 +6,7 @@ import ProfileScreen from '../../screens/ProfileScreen';
 import {Image} from 'react-native';
 import logo from '../../assets/images/instagram.png';
 import BottomTabNavigator from './BottomTabNavigator';
+import CommentsScreen from '../../screens/CommentsScreen/CommentsScreen';
 
 const Stack = createNativeStackNavigator();
 const Navigation = () => {
@@ -20,11 +21,7 @@ const Navigation = () => {
           options={{headerShown: false}}
         />
 
-        <Stack.Screen
-          name="UserProfile"
-          component={ProfileScreen}
-          options={{title: 'Profile'}}
-        />
+        <Stack.Screen name="Comments" component={CommentsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

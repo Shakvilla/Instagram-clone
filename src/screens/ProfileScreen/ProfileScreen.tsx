@@ -7,7 +7,7 @@ import users from '../../assets/data/user.json';
 const ProfileScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
-  const {userId} = route.params?.userId;
+  // const userId = route.params?.userId;
 
   // navigation.setOptions({title: user.username});
   return (
