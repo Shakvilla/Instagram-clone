@@ -13,6 +13,7 @@ import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
 import VideoPlayer from '../VideoPlayer';
 import {useNavigation} from '@react-navigation/native';
+import {FeedNavigationProp} from '../navigation/types';
 interface INewsFeed {
   post: IPost;
   isVisible: boolean;
@@ -22,7 +23,7 @@ const NewsFeed = ({post, isVisible}: INewsFeed) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<FeedNavigationProp>();
 
   // click to expand description
   const toggleIsDescriptionExpanded = () => {
