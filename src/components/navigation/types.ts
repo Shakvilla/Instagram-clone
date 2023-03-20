@@ -1,3 +1,4 @@
+import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 
@@ -18,6 +19,11 @@ export type MyProfileNavigationProp = BottomTabNavigationProp<
   BottomTabNavigatorParamList,
   'MyProfile'
 >;
+
+export type MyProfileRouteProp = RouteProp<
+  HomeStackNavigatorParamList,
+  'MyProfile'
+>;
 export type HomeStackNavigatorParamList = {
   Feed: undefined;
   UserProfile: {userId: string};
@@ -29,6 +35,10 @@ export type FeedNavigationProp = NativeStackNavigationProp<
 >;
 
 export type UserProfileNavigationProp = NativeStackNavigationProp<
+  HomeStackNavigatorParamList,
+  'UserProfile'
+>;
+export type UserProfileRouteProp = RouteProp<
   HomeStackNavigatorParamList,
   'UserProfile'
 >;
